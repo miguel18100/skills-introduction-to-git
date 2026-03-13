@@ -38,7 +38,7 @@ let currentPiece = null;
 let currentX = 0;
 let currentY = 0;
 let score = 0;
-let gameOver = false;
+let highScore = 0;
 let isPaused = false;
 let dropCounter = 0;
 let dropInterval = 1000;
@@ -58,8 +58,8 @@ function init() {
     .map(() => Array(COLS).fill(0));
 
   // Set initial target pattern
-  setNewTargetPattern();
-
+highScore = parseInt(localStorage.getItem("stackOverflownHighScore")) || 0;
+document.getElementById("high-score").textContent = highScore;
   // Spawn first piece
   spawnPiece();
 
