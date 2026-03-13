@@ -310,38 +310,16 @@ function updateScore() {
 }
 
 // Handle keyboard input
-function handleKeyPress(e) {
-  if (gameOver) return;
+function updateScore() {
+  document.getElementById("score").textContent = score;
 
-  switch (e.key) {
-    case "ArrowLeft":
-      e.preventDefault();
-      if (!isPaused) moveLeft();
-      break;
-    case "ArrowRight":
-      e.preventDefault();
-      if (!isPaused) moveRight();
-      break;
-    case "ArrowDown":
-      e.preventDefault();
-      if (!isPaused) moveDown();
-      break;
-    case "ArrowUp":
-      e.preventDefault();
-      if (!isPaused) rotate();
-      break;
-    case " ":
-      e.preventDefault();
-      if (!isPaused) hardDrop();
-      break;
-    case "p":
-    case "P":
-      e.preventDefault();
-      togglePause();
-      break;
+  // Update high score if current score exceeds it
+  if (score > highScore) {
+    highScore = score;
+    document.getElementById("high-score").textContent = highScore;
+    localStorage.setItem("stackOverflownHighScore", highScore);
   }
 }
-
 // Toggle pause
 function togglePause() {
   isPaused = !isPaused;
